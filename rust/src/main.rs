@@ -1,21 +1,22 @@
 use rand::thread_rng;
 use rand::seq::SliceRandom;
+use std::time::{Instant};
+
 
 fn main() {
     println!("Hello, world!");
 
-    // print!("Starting game {}", 0);
-    //     let count = game();
-    //     print!(", count {}", count);
-    //     let count2 = game();
-    //     print!(", count {}", count2);
-        // game();
+    let start = Instant::now();
+    let mut counts = Vec::new();
 
-    for i in 0..1000 {
-        print!("Starting game {}", i);
+    for _ in 0..10000 {
         let count = game();
-        println!(", count {}", count);
+        counts.push(count);
     }
+
+    let duration = start.elapsed();
+    println!("{}", counts.iter().map(|x| x.to_string()).collect::<Vec<String>>().join(","));
+    println!("Time elapsed: {}ms", duration.as_millis());
 
 }
 
@@ -23,14 +24,7 @@ fn game() -> i32 {
     let deck = produce_deck();
 
     let (mut d1, mut d2) = split_deck(deck);
-    // print_deck(&d1);
-    // print_deck(&d2);
-
-    // play(&mut d1, &mut d2);
-
-    // print_deck(&d1);
-    // print_deck(&d2);
-
+   
     let mut counter = 0;
     loop {
         counter += 1;
@@ -38,14 +32,14 @@ fn game() -> i32 {
         if d1.cards.len() == 0 || d2.cards.len() == 0 {
             break;
         }
-        if counter > 10000 {
+        if counter >= 10000 {
+            print_deck(& d1);
+            print_deck(& d2);
             break;
         }
     }
 
     counter
-    // print_deck(&d1);
-    // print_deck(&d2);
 }
 
 struct Deck {
@@ -79,6 +73,8 @@ fn play(deck1: &mut Deck, deck2: &mut Deck) {
             true => deck2,
             false => deck1
         };
+
+        engaged.shuffle(&mut thread_rng());
 
     for card in engaged {
         target.cards.push(card);
