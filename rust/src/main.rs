@@ -9,7 +9,7 @@ fn main() {
     let start = Instant::now();
     let mut counts = Vec::new();
 
-    for _ in 0..10000 {
+    for _ in 0..100_000 {
         let count = game();
         counts.push(count);
     }
