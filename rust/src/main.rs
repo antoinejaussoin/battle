@@ -15,9 +15,10 @@ fn main() {
     }
 
     let duration = start.elapsed();
-    println!("{}", counts.iter().map(|x| x.to_string()).collect::<Vec<String>>().join(","));
+    // println!("{}", counts.iter().map(|x| x.to_string()).collect::<Vec<String>>().join(","));
     println!("Time elapsed: {}ms", duration.as_millis());
-
+    let average = (counts.iter().sum::<i32>()) ;
+    println!("Average: {}", average / (counts.len() as i32));
 }
 
 fn game() -> i32 {

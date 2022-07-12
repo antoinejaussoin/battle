@@ -1,4 +1,5 @@
 const shuffle = require('lodash/shuffle');
+const sum = require('lodash/sum');
 
 console.log('Hello world')
 
@@ -14,7 +15,8 @@ const start = performance.now();
 		//console.log('')
 //    println!("{}", counts.iter().map(|x| x.to_string()).collect::<Vec<String>>().join(","));
     console.log("Time elapsed: ", duration, "ms");
-		console.log(counts)
+		// console.log(counts);
+		console.log("Average count: ", sum(counts)/counts.length);
 
 
 
