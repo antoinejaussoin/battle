@@ -6,7 +6,7 @@ console.log('Hello world')
 const start = performance.now();
     const  counts = [];
 
-		for (let i = 0; i< 100000; i++) {
+		for (let i = 0; i< 100_000; i++) {
 			const count = game();
 			counts.push(count);
 		}
